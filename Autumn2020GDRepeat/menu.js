@@ -23,7 +23,7 @@ class Menu
     screenMenu(canvas)
     {
         canvas.save();
-		canvas.fillStyle= "#FFFFFF";
+		canvas.fillStyle= "#000000";
 		canvas.font = "italic 40pt Calibri";
         canvas.textBaseLine = "top";
         canvas.fillText("Welcome to the main Menu", 100, 100);
