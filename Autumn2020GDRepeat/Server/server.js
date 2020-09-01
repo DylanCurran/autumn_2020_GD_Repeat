@@ -13,7 +13,13 @@ const io = socketio(server);
 
 io.on("connection", (sock) => {
     console.log("a player connected");
-    sock.emit("message", "Connected")});
+    sock.emit("message", "Connected")
+
+
+    sock.on("message", (text)=> {
+        io.emit("message", text);
+    });
+});
 
 server.on("error", (err) =>{console.error("server error",err);});
 

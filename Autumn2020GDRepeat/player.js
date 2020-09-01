@@ -19,6 +19,7 @@ class Player
         this.jumpNow = false;
         this.fallNow = false;
         this.jumpDelay = 0;
+        this.colourChanger = false;
 
     }
     update()
@@ -37,7 +38,10 @@ class Player
             
     }
 
-    
+    colourChange()
+    {
+        this.colourChanger = true;
+    }
     jump()
     {
         if(!this.fallNow)
@@ -84,6 +88,12 @@ class Player
     exitTutorial()
     {
         this.end = true;
+        this.colourChanger = false;
+        
+    }
+    exitAchieve()
+    {
+        this.achievement = false;
     }
 
     initGame()
@@ -91,6 +101,7 @@ class Player
         this.start = true;
         this.end = false;
         this.tutorial = false;
+        this.achievement = false;
     }
 
     resetPosition()

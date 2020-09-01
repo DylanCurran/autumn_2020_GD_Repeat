@@ -24,7 +24,7 @@ class EndMenu
     {
         canvas.save();
 		canvas.fillStyle= "#000000";
-		canvas.font = "italic 40pt Calibri";
+		canvas.font = "italic 30pt Calibri";
         canvas.textBaseLine = "top";
         canvas.fillText("Game Over", 100, 100);
         canvas.fillText("Press Space to restart the game", 100, 200);

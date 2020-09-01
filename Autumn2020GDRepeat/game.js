@@ -78,6 +78,11 @@ class Game
 	 {	
 		 player.exitTutorial();
 	 }
+	 if(e.keyCode === 40 && player.achievement)
+	 {
+		 player.exitAchieve();
+		 player.start = true;
+	 }
 	 if(e.keyCode == 32 && player.start )
 	 {
 		player.start = false;
@@ -88,6 +93,10 @@ class Game
 		 player.resetPosition();
 		 player.end = false;
 		 player.tutorial = false;
+	 }
+	 if(e.keyCode == 13 && player.start)
+	 {
+		 player.colourChange();
 	 }
 	 //return to menu
 	 if(e.keyCode == 13 && player.end)
@@ -105,6 +114,12 @@ class Game
 		 console.log("Keypress");
 		player.tutorial = true;
 		player.start = false;
+	 }
+	 if(e.keyCode == 65)
+	 {
+		 player.achievement = true;
+		 player.start = false;
+		 console.log("achieved");
 	 }
 	
 
@@ -143,7 +158,7 @@ class Game
 		{
 			this.player.y = 260;
 		}
-		if(!this.player.start && this.player.end == false)
+		if(!this.player.start && this.player.end == false && !this.player.achievement)
 		{
 			for(var i = 0; i < 3 ; i++)
 			{
@@ -159,7 +174,7 @@ class Game
 	draw()
 	{
 		this.ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
-        if(!this.player.start && this.player.end == false)
+        if(!this.player.start && this.player.end == false && !this.player.achievement)
 		{
 			this.player.draw(this.spriteCounter,this.ctx);
 			this.ground.draw(this.ctx);
@@ -169,7 +184,7 @@ class Game
 			}
 			for(var i = 0; i < 3 ; i++)
 			{
-				this.obstacleArray[i].draw(this.ctx);
+				this.obstacleArray[i].draw(this.ctx,this.player.colourChanger);
 			
 			}
 
@@ -181,16 +196,24 @@ class Game
 		}
 		else
 		{
-			if(!this.player.tutorial)
+			if(this.player.achievement)
 			{
-				this.endMenu.screenMenuEnd(this.ctx);
-				this.ResetGame();
-				this.score.resetScore();
+				this.score.displayAchievements(this.ctx);
 			}
 			else
 			{
-				this.endMenu.tutorialEnd(this.ctx);
-				this.ResetGame();
+				
+				if(!this.player.tutorial)
+				{
+					this.endMenu.screenMenuEnd(this.ctx);
+					this.ResetGame();
+					this.score.resetScore();
+				}
+				else
+				{
+					this.endMenu.tutorialEnd(this.ctx);
+					this.ResetGame();
+				}
 			}
 		}
 		
@@ -273,5 +296,6 @@ class Game
 	{
 		this.player.resetPosition();
 		this.obstacleSetup();
+		this.player.colourChanger = false;
 	}
 }

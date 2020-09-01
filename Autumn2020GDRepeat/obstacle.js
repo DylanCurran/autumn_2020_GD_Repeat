@@ -18,9 +18,16 @@ class Obstacle
         }
     }
 
-    draw(ctx)
+    draw(ctx,colour)
     {
-        ctx.fillStyle = "#00FF00";
+        if(colour)
+        {
+            ctx.fillStyle = "#00FF00";
+        }
+        else
+        {
+            ctx.fillStyle = "#FF0000";
+        }
         ctx.fillRect(this.x,this.y,this.width,this.height);
     }
 

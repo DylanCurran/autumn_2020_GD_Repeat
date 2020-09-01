@@ -44,11 +44,15 @@ class Score
         {
             this.score++;
             this.scoreDelay = 0;
+            this.gotBronze();
+            this.gotSilver();
+            this.gotGold();
         }
         if(this.highScore < this.score)
         {
             this.highScore = this.score;
         }
+       
     }
     displayScore(canvas)
     {
@@ -59,6 +63,27 @@ class Score
         canvas.fillText("Current Score: " + this.score, 50, 50);
         canvas.fillText("High Score: " + this.highScore, 450, 50);
 		canvas.restore();
+    }
+    displayAchievements(canvas)
+    {
+        canvas.save();
+        canvas.fillStyle= "#000000";
+		canvas.font = "italic 20pt Calibri";
+        canvas.textBaseLine = "top";
+        if(this.earnedBronze)
+        {
+            canvas.fillText("You earned a bronze medal", 50, 50);
+        }
+        if(this.earnedSilver)
+        {
+            canvas.fillText("You earned a silver medal", 50, 150);
+        }
+        if(this.earnedGold)
+        {
+            canvas.fillText("You earned a gold medal", 50, 250);
+        }
+        canvas.fillText("Press the down key to return to the menu",100,350);
+        canvas.restore();
     }
     resetScore()
     {
